@@ -12,3 +12,6 @@ class PostsController extends Controller
         return 'This is index() method in a PostController';
     }
 }
+
+
+//testing or online sync

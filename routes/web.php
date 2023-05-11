@@ -48,11 +48,11 @@ use Illuminate\Support\Facades\Route;
 // Route::any('/blog',[App\Http\Controllers\PRController::class, 'index']);
 
 //Return view only
-// Route::view('/blog', 'blog.index', ['name' => 'Testing']);
+Route::view('/blog', 'blog.index', ['name' => 'Testing']);
 
 //this if a route for invoke method
 
-// Route::get('/', App\Http\Controllers\HController::class);
+Route::get('/', App\Http\Controllers\HController::class)->name('/');
 
 /*
     GET - Request a resource
@@ -66,23 +66,42 @@ use Illuminate\Support\Facades\Route;
 //Variable Route
 
 //GET request
-Route::get('/blog', [App\Http\Controllers\PRController::class, 'index'])->name('blog'); //
-Route::get('/blog/{id}', [App\Http\Controllers\PRController::class, 'show'])->name('blog'); //curly braces for variables
+// Route::get('/blog', [App\Http\Controllers\PRController::class, 'index'])->name('blog'); //
+// Route::get('/blog/{id}', [App\Http\Controllers\PRController::class, 'show'])->name('blog');//
+
+// Route::get('/blog/{id}/{name}', [App\Http\Controllers\PRController::class, 'show'])->name('blog')
+//     ->whereNumber('id')
+//     ->whereAlpha('name');//hybrid id of number then strings.
+
+
+// Route::get('/blog/{id}/{name}', [App\Http\Controllers\PRController::class, 'show'])
+//     ->name('blog')->where([
+//         'id'=> '[0-9]+',
+//         'name'=> '[A-Za-z]+'
+//       ]); //almost hybrid integration of numbers & strings id
+
+// Route::get('/blog/{name}', [App\Http\Controllers\PRController::class, 'show'])
+    // ->name('blog')->where('name', '[A-Za-z]+');
+//[A-Za-z]+, id in strings, number not accepted.
+
+// Route::get('/blog/{id}', [App\Http\Controllers\PRController::class, 'show'])->name('blog')->where('id', '[0-9]+');
+//[0-9]+, id in numbers accepted, string = not found
+//curly braces for variables
 
 //POST
-Route::get('/blog/create', [App\Http\Controllers\PRController::class, 'create'])->name('blog');//will visible in create method in controller
-Route::post('/blog', [App\Http\Controllers\PRController::class, 'store'])->name('blog');//when user submitted the form, inside store method inside database
+// Route::get('/blog/create', [App\Http\Controllers\PRController::class, 'create'])->name('blog');//will visible in create method in controller
+// Route::post('/blog', [App\Http\Controllers\PRController::class, 'store'])->name('blog');//when user submitted the form, inside store method inside database
 
 //PUT OR PATCH
-Route::get('/blog/edit/{id}', [App\Http\Controllers\PRController::class, 'edit'])->name('blog');//visible in specific id of 1 in edit method (controller)
-Route::patch('/blog/{id}', [App\Http\Controllers\PRController::class, 'update'])->name('blog');
+// Route::get('/blog/edit/{id}', [App\Http\Controllers\PRController::class, 'edit'])->name('blog');//visible in specific id of 1 in edit method (controller)
+// Route::patch('/blog/{id}', [App\Http\Controllers\PRController::class, 'update'])->name('blog');
 
 //DELETE
-Route::delete('/blog/{id}', [App\Http\Controllers\PRController::class, 'destroy'])->name('blog');//deleting specific id of 1
+// Route::delete('/blog/{id}', [App\Http\Controllers\PRController::class, 'destroy'])->name('blog');//deleting specific id of 1
 
 //all above are handled in resource method of controller
-Route::resource('blog', App\Http\Controllers\PRController::class);
+// Route::resource('blog', App\Http\Controllers\PRController::class);
 
 //Multiple HTTP verbs
-Route::match(['GET', 'POST'], '/blog',[App\Http\Controllers\PRController::class, 'index']);
-Route::any('/blog',[App\Http\Controllers\PRController::class, 'index']);
+// Route::match(['GET', 'POST'], '/blog',[App\Http\Controllers\PRController::class, 'index']);
+// Route::any('/blog',[App\Http\Controllers\PRController::class, 'index']);
